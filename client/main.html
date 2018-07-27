@@ -23,32 +23,68 @@
       {{>discussion_board}}
     {{else}}
       {{>login_form_template}}
-      {{>registeration}}
+      {{>registration}}
     {{/if}}
 
 
   </div>
 </body>
-
-<template name="registeration">
-    <h2>Register</h2>
-    <form class="js-register">
-      <div class="form-group">
-        <label for="user_name">Username</label>
-        <input type="text" name="user_name" class="form-control" placeholder="Enter your username">
+<template name="forgot_password">
+  <div class="modal fade" id="fpswd-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title">
+            <h3>Reset password</h3>
+          </div>
+        </div>
+        <div class="modal-body">
+          jadslfjasdk
+        </div>
+        <div class="modal-footer">
+          <button data-dismiss="modal" class="btn btn-warning" >Close</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="email" name="email_id" class="form-control" placeholder="Enter your email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" class="form-control" placeholder="Enter your password">
-      </div>
-      <button type="submit" class="btn btn-primary form-control">Register</button>
-    </form>
+    </div>
+  </div>
 </template>
+
+<template name="registration">
+  <div class="modal fade" id="sign-up-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title">
+            <h3>Sign-up</h3>
+          </div>
+        </div>
+        <div class="modal-body">
+          <form class="js-register">
+            <div class="form-group">
+              <label for="user_name">Username</label>
+              <input type="text" name="user_name" class="form-control" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" name="email_id" class="form-control" placeholder="Enter your email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Enter your password">
+              <small class="form-text text-muted registration_error_field text-danger"></small>
+            </div>
+            <button type="submit" class="btn btn-primary form-control">Register</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button data-dismiss="modal" class="btn btn-warning" >Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
 
 
 <template name="login_form_template">
@@ -63,14 +99,24 @@
       <div class="form-group col-md-4 col-md-offset-4">
         <label for="password_login">Password</label>
         <input type="password" name="password_login" class="form-control" placeholder="Enter your password">
+        <small class="form-text text-muted login_error_field text-danger"></small>
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
         <button type="submit" class="btn btn-success form-control">Login</button>
       </div>
     </div>
   </form>
+  <div class="row">
+      <div class="col-md-2 col-md-offset-4">
+        <a href="#" class="js-forgot-password" data-toggle="modal" data-target="#fpswd-modal">Forgot password</a>
+      </div>
+      <div class="col-md-2 col-md-offset-1">
+        <a href="#" class="js-show-sign-up" >Sign-up</a>
+      </div>
+  </div>
 </template>
 
 
@@ -82,6 +128,7 @@
     </blockquote>
   {{/each}}
 </template>
+
 
 
 <template name="enter_feed">

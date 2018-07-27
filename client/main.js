@@ -13,10 +13,10 @@ Meteor.subscribe('feeds',()=>{
 });
 
 Feeds = new Mongo.Collection('feeds');
-
 //EVENTS
-Template.registeration.events({
+Template.registration.events({
   'submit .js-register':function(event){
+    event.preventDefault();
     var username = $("[name=user_name]").val();
     var email = $("[name=email_id]").val();
     var password = $("[name=password]").val();
@@ -25,9 +25,17 @@ Template.registeration.events({
       username: username,
       email: email,
       password: password
-    }, (error) =>{
+    }, function(error, result) {
+
+      if(error){
+        $(".registration_error_field").text(error.reason);
       console.log(error.reason);
-    });
+    }else {
+      $("#sign-up-modal").modal('hide');
+      $(".modal-backdrop").remove();
+
+    }
+  });
   },
 });
 
@@ -36,16 +44,24 @@ Template.login_form_template.events({
     event.preventDefault();
     var email = $("[name=email_id_login]").val();
     var password = $("[name=password_login]").val();
-    Meteor.loginWithPassword(email,password, function(error){
-      console.log(error.reason);
+    Meteor.loginWithPassword(email,password, function(error, result){
+      $(".login_error_field").text(error.reason+"*");
     });
-    console.log('login details: '+Meteor.userId());
   },
-})
+  'click .js-show-sign-up': function(event){
+    $(".registration_error_field").text('');
+    $("#sign-up-modal").modal('show');
+    $(".js-register").trigger('reset'); 
+
+  },
+  'click .js-forgot-password': function(event){
+    console.log("clicked new"+ $("#fpswd-modal").contents());
+    $("#fpswd-modal").modal('show');
+  },
+});
 
 Template.body.events({
   'click .logout_account':function(event){
-
     Meteor.logout(()=>{
       console.log("Logged out");
     });
