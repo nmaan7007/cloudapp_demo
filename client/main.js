@@ -33,7 +33,6 @@ Template.registration.events({
     }else {
       $("#sign-up-modal").modal('hide');
       $(".modal-backdrop").remove();
-
     }
   });
   },
@@ -54,10 +53,10 @@ Template.login_form_template.events({
     $(".js-register").trigger('reset');
 
   },
-  'click .js-forgot-password': function(event){
-    console.log("clicked new"+ $("#fpswd-modal").contents());
+  'click .js-forgot-password':function(event){
     $("#fpswd-modal").modal('show');
   },
+
 });
 
 Template.body.events({
@@ -66,6 +65,22 @@ Template.body.events({
       console.log("Logged out");
     });
   },
+});
+Template.forgot_password.events({
+  'submit .js-forgot-password':function(event){
+    var options ={};
+    email = event.target.email_id.value;
+    console.log(email);
+    Accounts.forgotPassword({email:email},(error,result)=>{
+      if(error){
+        $("#password-reset-info").text(error.reason);
+      }else{
+        $("#password-reset-info").text('You will receive a reset link on respective email-id');
+        $("#fpswd-modal").modal('hide');
+        $(".modal-backdrop").remove();
+      }
+    });
+  }
 });
 
 Template.enter_feed.events({

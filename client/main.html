@@ -24,11 +24,13 @@
     {{else}}
       {{>login_form_template}}
       {{>registration}}
+      {{>forgot_password}}
     {{/if}}
 
 
   </div>
 </body>
+
 <template name="forgot_password">
   <div class="modal fade" id="fpswd-modal">
     <div class="modal-dialog">
@@ -39,7 +41,15 @@
           </div>
         </div>
         <div class="modal-body">
-          jadslfjasdk
+          <form class="js-forgot-password">
+            <div class="form-group">
+              <label for="email_id">Email</label>
+              <input type="text" name="email_id" class="form-control" placeholder="Enter your email-id">
+              <small id="password-reset-info" class="form-text text-muted text-danger">You will receive a reset link on respective email-id.</small>
+
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Submit</button>
+          </form>
         </div>
         <div class="modal-footer">
           <button data-dismiss="modal" class="btn btn-warning" >Close</button>
@@ -111,7 +121,7 @@
   </form>
   <div class="row">
       <div class="col-md-2 col-md-offset-4">
-        <a href="#" class="js-forgot-password" data-toggle="modal" data-target="#fpswd-modal">Forgot password</a>
+        <a href="#" class="js-forgot-password" >Forgot password</a>
       </div>
       <div class="col-md-2 col-md-offset-1">
         <a href="#" class="js-show-sign-up" >Sign-up</a>
