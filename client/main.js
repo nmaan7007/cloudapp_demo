@@ -51,7 +51,7 @@ Template.login_form_template.events({
   'click .js-show-sign-up': function(event){
     $(".registration_error_field").text('');
     $("#sign-up-modal").modal('show');
-    $(".js-register").trigger('reset'); 
+    $(".js-register").trigger('reset');
 
   },
   'click .js-forgot-password': function(event){
